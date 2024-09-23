@@ -1,8 +1,10 @@
 <script>
+import { store } from '../store.js'
+
 export default {
   data() {
     return {
-      
+      store,
     }
   }
 }
@@ -26,9 +28,9 @@ export default {
           BOOLFLIX
         </a>
         <search>
-          <form action="" class="d-flex" >
-            <input class="form-control fomr-c" type="text">
-            <button class="btn btn-info btn-sm ms-2">Cerca</button>
+          <form action="" class="d-flex" @submit.prevent>
+            <input class="form-control fomr-c" type="text" v-model="store.searchedString">
+            <button class="btn btn-info btn-sm ms-2" @click="$emit('startSearch')">Cerca</button>
           </form>
         </search>
       </div>  
