@@ -1,0 +1,40 @@
+<script>
+export default {
+  data() {
+    return {
+      
+    }
+  }
+}
+</script>
+
+<template>
+  <header>
+    <!--     <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+          Bootstrap
+        </a>
+      </div>
+    </nav>
+    -->
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand">
+          <img src="" alt="">
+          BOOLFLIX
+        </a>
+        <search>
+          <form action="" class="d-flex" >
+            <input class="form-control fomr-c" type="text">
+            <button class="btn btn-info btn-sm ms-2">Cerca</button>
+          </form>
+        </search>
+      </div>  
+    </nav>
+  </header>
+</template>
+
+<style scoped>
+</style>
