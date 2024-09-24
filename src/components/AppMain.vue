@@ -404,8 +404,8 @@ export default {
   }
 
   .film-card,
-  .card-header{
   .series-card {
+   .card-header{
       font-size: 1.2rem;
       font-weight: 700;
     }
