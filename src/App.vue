@@ -10,7 +10,9 @@ export default {
   data() {
     return {
       store,
-      isUserSearching: false
+      isUserSearching: false,
+      apiUrl: 'https://api.themoviedb.org/3/search',
+      apiImageUrl: 'https://image.tmdb.org/t/p',
     }
   },
   components: {
@@ -25,7 +27,7 @@ export default {
       const searchedStringParsed = searchedString.trim().split(' ').join('+');
       axios({
         method: 'get',
-        url: `https://api.themoviedb.org/3/search/movie?api_key=1fd566793335f9588cc7777244224c41&query=${searchedStringParsed}`,
+        url: `${this.apiUrl}/movie?api_key=1fd566793335f9588cc7777244224c41&query=${searchedStringParsed}`,
         responseType: ''
         })
         .then(response => {
@@ -38,7 +40,7 @@ export default {
       const searchedStringParsed = searchedString.trim().split(' ').join('+');
       axios({
         method: 'get',
-        url: `https://api.themoviedb.org/3/search/tv?api_key=1fd566793335f9588cc7777244224c41&query=${searchedStringParsed}`,
+        url: `${this.apiUrl}/tv?api_key=1fd566793335f9588cc7777244224c41&query=${searchedStringParsed}`,
         responseType: ''
         })
         .then(response => {
@@ -52,7 +54,7 @@ export default {
 
 <template>
   <Header @start-search="getFilms(store.searchedString), getSeries(store.searchedString)"/>
-  <Main :userStatus="isUserSearching" />
+  <Main :userStatus="isUserSearching" :apiImg="apiImageUrl" />
 </template>
 
 <style lang="scss">
