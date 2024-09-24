@@ -1,9 +1,10 @@
 <script>
-import Header from './components/AppHeader.vue'
-import Main from './components/AppMain.vue'
-import { store } from './store.js'
-import axios from 'axios'
-
+import Header from './components/AppHeader.vue';
+import Main from './components/AppMain.vue';
+import { store } from './store.js';
+import axios from 'axios';
+import '/node_modules/flag-icons/css/flag-icons.min.css';
+import '/node_modules/flag-icons/css/revisioned-flag-icons/gb-flag.scss';
 
 export default {
   data() {
@@ -44,4 +45,5 @@ export default {
 
 <style lang="scss">
 @use 'bootstrap/scss/bootstrap.scss';
+@use 'style/general.scss';
 </style>
