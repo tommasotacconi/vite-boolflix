@@ -292,28 +292,77 @@ export default {
 
 <template>
   <main>
-    <div class="container-lg mt-4 pt-1">
-      <div class="row row-gap-5">
-        <!-- Col with a card -->
-        <div class="col-4" v-if="this.userStatus" v-for="film in store.filmsCorrespondances">
-          <div class="card h-100" style="width: 18rem;">
-            <div class="card-header">
-              {{ film.title }}
+    <div class="container-lg mt-4 pt-1">    
+      <!-- Results for films -->
+      <div class="films-wrapper card text-center">
+        <div class="card-header">
+          Films
+        </div>
+        <div class="card-body">
+          <div class="row row-gap-5">
+            <!-- Col with a card -->
+            <div class="col-4" v-if="this.userStatus" v-for="film in store.filmsCorrespondances">
+              <!-- Single card with film or tv series info -->
+              <div class="film-card h-100" style="width: 18rem;">
+                <div class="card-header">
+                  {{ film.title }}
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <span>Original title:</span>
+                    {{ film.original_title }}
+                  </li>
+                  <li class="list-group-item">
+                    <span>Original language: </span>
+                    <span class="language" :class="[{ ['fi']: availableFlagIcons.includes(film.original_language) }, `fi-${film.original_language}`]">{{ availableFlagIcons.includes(film.original_language) ? '' : film.original_language }}</span>
+                  </li>
+                  <li class="list-group-item">
+                    <span>Vote:</span> 
+                    {{ film.vote_average }}
+                  </li>
+                </ul>
+              </div>
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <span>Original title:</span>
-                {{ film.original_title }}
-              </li>
-              <li class="list-group-item">
-                <span>Original language: </span>
-                <span class="fi" :class="[`fi-${film.original_language}`]">{{ availableFlagIcons.includes(film.original_language) ? '' : film.original_language }}</span>
-              </li>
-              <li class="list-group-item">
-                <span>Vote:</span> 
-                {{ film.vote_average }}</li>
-            </ul>
+          </div>          
+        </div>
+        <div class="card-footer text-body-secondary">
+          Found {{ store.filmsCorrespondances.length }} films
+        </div>
+      </div>
+      <!-- Results for tv-series -->
+      <div class="series-wrapper card text-center">
+        <div class="card-header">
+          TV series
+        </div>
+        <div class="card-body">
+          <div class="row row-gap-5">
+            <!-- Col with a card -->
+            <div class="col-4" v-if="this.userStatus" v-for="series in store.seriesCorrespondances">
+              <!-- Single card with film or tv series info -->
+              <div class="series-card h-100" style="width: 18rem;">
+                <div class="card-header">
+                  {{ series.name }}
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <span>Original title:</span>
+                    {{ series.original_name }}
+                  </li>
+                  <li class="list-group-item">
+                    <span>Original language: </span>
+                    <span class="language" :class="[{ ['fi']: availableFlagIcons.includes(series.original_language) }, `fi-${series.original_language}`]">{{ availableFlagIcons.includes(series.original_language) ? '' : series.original_language }}</span>
+                  </li>
+                  <li class="list-group-item">
+                    <span>Vote:</span> 
+                    {{ series.vote_average }}
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="card-footer text-body-secondary">
+          Found  {{ store.seriesCorrespondances.length }} TV series
         </div>
       </div>
     </div>
@@ -321,12 +370,24 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  .card-header {
+  .films-wrapper,
+  .series-wrapper {
+    margin-bottom: 60px;
+  }
+
+  .film-card,
+  .series-card {
+    margin: auto auto;
+    text-align: left;
+  }
+
+  .film-card card-header,
+  .series-card card-header {
     font-size: 1.2rem;
     font-weight: 700;
   }
 
-  .card ul span:not(.fi) {
+  .card ul span:not(.fi, .language) {
     filter: invert(0.3);
   }
   
