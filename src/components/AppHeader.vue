@@ -29,7 +29,7 @@ export default {
         </a>
         <search>
           <form action="" class="d-flex" @submit.prevent>
-            <input class="form-control fomr-c" type="text" v-model="store.searchedString">
+            <input class="form-control" type="text" v-model="store.searchedString">
             <button class="btn btn-info btn-sm ms-2" @click="$emit('startSearch')">Cerca</button>
           </form>
         </search>
