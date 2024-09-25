@@ -31,6 +31,7 @@ export default {
         responseType: ''
         })
         .then(response => {
+          console.log('films');
           console.dir(response);
           store.filmsCorrespondances = response.data.results;
           this.triggerIsUserSearching();
@@ -44,6 +45,7 @@ export default {
         responseType: ''
         })
         .then(response => {
+          console.log('series');
           console.dir(response);
           store.seriesCorrespondances = response.data.results;
         });

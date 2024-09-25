@@ -1,5 +1,17 @@
 <script>
+import { reactive } from 'vue';
+
 export default {
+  setup() {
+    const styleObject = reactive({
+      backgroundSize: '120%',
+      backgroundPosition: 'center',
+    });
+
+    return {
+      styleObject
+    };
+  },
   data() {
     return {
       availableFlagIcons: [
@@ -293,14 +305,17 @@ export default {
       type: String,
       required: true,
     }
+  },
+  computed: {
+    backgroundImg: function () {return `url(${this.apiImg}/w342/${this.operaInfo.poster_path})`}
   }
 }
 </script>
 
 <template>
   <!-- Single card with film or tv series info -->
-  <div class="film-card h-100" style="width: 18rem;">
-    <img :src="[`${apiImg}/w342/${operaInfo.poster_path}`]" alt="" class="card-img-top">
+  <div class="card opera-card" style="width: 18rem;" :style="[styleObject, { backgroundImage: backgroundImg }]">
+    <img :src="[`${apiImg}/w342/${operaInfo.poster_path}`]" alt="" class="card-img">
     <div class="wrapper-show">
       <div class="card-header">
         {{ operaInfo.title ? operaInfo.title : operaInfo.name }}
@@ -319,31 +334,71 @@ export default {
           <font-awesome-icon class="fa-star" :icon="['fa-solid', 'fa-star']" v-for="star in getVoteInStars(operaInfo.vote_average)" />
           <font-awesome-icon class="fa-star" :icon="['fa-regular', 'fa-star']" v-for="star in getUnfilledStars(operaInfo.vote_average)" />
         </li>
+        <li class="list-group-item">
+          <span>Overview: </span>
+          {{ operaInfo.overview }}
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-  .film-card,
-  .series-card {
+  .opera-card {
+    height: 429px;
     margin: auto auto;
     text-align: left;
+    color: #fff;
+    border-color: #888;
+    
+    position: relative;
+    overflow: hidden;
   }
 
-  .film-card,
-  .series-card {
-   .card-header{
+  .opera-card {
+    .card-header {
+      color: #fff;
       font-size: 1.2rem;
       font-weight: 700;
+      border-bottom-color: #fff; 
+
+      position: relative;
+    }
+
+    .list-group-item {
+    background-color: transparent;
+    color: #fff;
+    }
+
+    ul span:not(.fi, .language) {
+      filter: invert(0.45);
+    }
+
+    .fa-star {
+      margin-left: 5px;
     }
   }
 
-  .card ul span:not(.fi, .language) {
-    filter: invert(0.3);
+  .wrapper-show {
+    display: none;
   }
 
-  .fa-star {
-    margin-left: 5px;
+  .opera-card:hover .wrapper-show {
+    display: block;
+  }
+
+  .opera-card:hover .card-img {
+    display: none;
+  }
+
+  .opera-card:hover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: var(--bs-card-inner-border-radius);
+    background-color: #000000ae;
   }
 </style>

@@ -12,6 +12,7 @@ export default {
     MainCard,
   },
   methods: {
+    writeS: array => array.length > 1 ? 's' : '',
   },
   props: {
     userStatus: {
@@ -22,7 +23,7 @@ export default {
       type: String,
       required: true,
     }
-  }
+  },
 }
 </script>
 
@@ -30,7 +31,7 @@ export default {
   <main>
     <div class="container-lg mt-4 pt-1">    
       <!-- Results for films -->
-      <div class="films-wrapper card text-center">
+      <div class="films-wrapper card text-center" v-show="store.filmsCorrespondances.length">
         <div class="card-header">
           Films
         </div>
@@ -43,11 +44,11 @@ export default {
           </div>          
         </div>
         <div class="card-footer text-body-secondary">
-          Found {{ store.filmsCorrespondances.length }} films
+          Found <span class="badge rounded-pill text-bg-info">{{ store.filmsCorrespondances.length }} film{{ writeS(store.filmsCorrespondances) }}</span>
         </div>
       </div>
       <!-- Results for tv-series -->
-      <div class="series-wrapper card text-center">
+      <div class="series-wrapper card text-center" v-show="store.seriesCorrespondances.length">
         <div class="card-header">
           TV series
         </div>
@@ -60,7 +61,7 @@ export default {
           </div>
         </div>
         <div class="card-footer text-body-secondary">
-          Found  {{ store.seriesCorrespondances.length }} TV series
+          Found  <span class="badge rounded-pill text-bg-info">{{ store.seriesCorrespondances.length }} TV series</span>
         </div>
       </div>
     </div>
@@ -71,5 +72,16 @@ export default {
   .films-wrapper,
   .series-wrapper {
     margin-bottom: 60px;
-  }  
+  }
+
+  .films-wrapper,
+  .series-wrapper {
+    .card-body {
+      overflow-x: auto;
+    }
+  }
+
+  .row {
+    flex-wrap: nowrap;
+  }
 </style>
