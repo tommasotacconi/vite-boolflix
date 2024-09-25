@@ -365,10 +365,26 @@ export default {
       position: relative;
     }
 
+    ul {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      overflow: auto;
+    };
+
     .list-group-item {
-    background-color: transparent;
-    color: #fff;
+      background-color: transparent;
+      color: #fff;
     }
+
+    .list-group-item:last-child {
+      overflow: auto;
+      flex-grow: 1;
+    }
+
+    .list-group-item:last-child::-webkit-scrollbar-button {
+        width: 5px;
+      }
 
     ul span:not(.fi, .language) {
       filter: invert(0.45);
@@ -378,13 +394,15 @@ export default {
       margin-left: 5px;
     }
   }
-
+  
   .wrapper-show {
     display: none;
+    height: 100%;
   }
 
   .opera-card:hover .wrapper-show {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 
   .opera-card:hover .card-img {

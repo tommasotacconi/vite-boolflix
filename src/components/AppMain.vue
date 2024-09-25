@@ -79,6 +79,10 @@ export default {
     .card-body {
       overflow-x: auto;
     }
+
+    .badge.rounded-pill {
+      vertical-align: bottom;
+    }
   }
 
   .row {

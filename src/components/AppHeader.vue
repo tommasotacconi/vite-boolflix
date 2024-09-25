@@ -28,8 +28,8 @@ export default {
           BOOLFLIX
         </a>
         <search>
-          <form action="" class="d-flex" @submit.prevent>
-            <input class="form-control" type="text" v-model="store.searchedString">
+          <form action="" class="d-flex" @submit.prevent="store.searchedString = ''">
+            <input class="form-control w-100" type="text" v-model="store.searchedString" placeholder="Search here films or series">
             <button class="btn btn-info btn-sm ms-2" @click="$emit('startSearch')">Cerca</button>
           </form>
         </search>
