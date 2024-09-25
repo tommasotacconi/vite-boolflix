@@ -330,7 +330,7 @@ export default {
           <span class="language" :class="[{ ['fi']: availableFlagIcons.includes(operaInfo.original_language) }, `fi-${operaInfo.original_language}`]">{{ availableFlagIcons.includes(operaInfo.original_language) ? '' : operaInfo.original_language }}</span>
         </li>
         <li class="list-group-item">
-          <span>Vote (max 5 stars): </span> 
+          <span>Vote: </span> 
           <font-awesome-icon class="fa-star" :icon="['fa-solid', 'fa-star']" v-for="star in getVoteInStars(operaInfo.vote_average)" />
           <font-awesome-icon class="fa-star" :icon="['fa-regular', 'fa-star']" v-for="star in getUnfilledStars(operaInfo.vote_average)" />
         </li>
@@ -378,8 +378,28 @@ export default {
     }
 
     .list-group-item:last-child {
+      margin-right: 5px;
+
       overflow: auto;
       flex-grow: 1;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+        padding-right: 5px;
+      }
+      
+      &::-webkit-scrollbar-track {
+        // -webkit-box-shadow: inset 0 0 6px #ececec;
+         
+        border-radius: 10px;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        // -webkit-box-shadow: inset 0 0 6px #ececec
+        
+        background: var(--bs-info);
+        filter: invert(0.2);        
+      }
     }
 
     .list-group-item:last-child::-webkit-scrollbar-button {
@@ -387,7 +407,8 @@ export default {
       }
 
     ul span:not(.fi, .language) {
-      filter: invert(0.45);
+      filter: invert(0.2);
+      color: var(--bs-info);
     }
 
     .fa-star {
