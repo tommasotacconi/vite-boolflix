@@ -39,4 +39,9 @@ export default {
 </template>
 
 <style scoped>
+  a {
+    color: var(--bs-info);
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
 </style>
